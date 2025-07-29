@@ -1,10 +1,9 @@
 # Seguimiento1
-Laura del Sol González 
+## Laura del Sol González 
 
-1. DESCRIPCION DEL ARCHIVO 
+##1. DESCRIPCION DEL ARCHIVO 
 
-Describa los campos que se encontrará en este tipo de archivos. ¿Qué información está allí contenida? Proporcione ejemplos.
-
+- Describa los campos que se encontrará en este tipo de archivos. ¿Qué información está allí contenida? Proporcione ejemplos.
 El formato GFF3 (Generic Feature Format Version 3) es un estándar ampliamente usado en bioinformática para describir características genómicas (genes, exones, intrones, regiones codificantes, etc.) en archivos de texto plano tabulados.
 Los campos que se encuentran en este tipo de archivos son:
 
@@ -69,12 +68,11 @@ También hay regiones CDS, UTR, etc., relacionadas con el transcrito.
 2. DESCARGA DE ARCHIVOS DE TRABAJO 
 En el archivo seguimiento.txt
 
-3. ANÁLISIS DEL ARCHIVO 
+## 3. ANÁLISIS DEL ARCHIVO 
 
-* Proporcione una breve descripción del organismo asignado en el archivo
-README.
+* Proporcione una breve descripción del organismo asignado en el archivo README.
 
-Sorex araneus
+## Sorex araneus
 
 El Sorex araneus, conocido como musaraña bicolor o musaraña común, es un pequeño mamífero perteneciente al orden Soricomorpha, familia Soricidae y subfamilia Soricinae. 
 Esta especie se caracteriza por un tamaño mediano dentro del grupo de los sorícidos. Su morfología incluye un hocico alargado y móvil, terminado en una pequeña trompa con vibrisas sensoriales. Los ojos son diminutos y poco visibles, y las orejas que también son pequeñas se encuentran ocultas por el pelaje, que es bicolor y varía según la estación: en verano tiende a ser café y en invierno se vuelve más largo y oscuro.
@@ -93,21 +91,25 @@ tomado de: https://secem.es/sites/default/files/mamiferos/sorex-araneus/files/07
 
 *  Investigue, usando las herramientas de la línea de comandos de Unix, y conteste las siguientes preguntas:
 
-# 1. ¿Cuantos features (líneas de anotación) contiene el archivo? excluí las que empiezan con #
+## 1. ¿Cuantos features (líneas de anotación) contiene el archivo? excluí las que empiezan con #
+
 cat Sorex_araneus.COMMON_SHREW1.114.gff3 | grep -v "^#" | wc -l
 - El comando cuenta el número de líneas con información real en el archivo GFF3. Con cat se muestra el contenido completo del archivo. Y con el pipe | la información se envía a grep -v "^#", que elimina todas las líneas que comienzan con el símbolo #, ya que estas corresponden a comentarios dentro del archivo y wc -l cuenta el total de líneas restantes.
 
-# 2. ¿Cuantas regiones de la secuencia (cromosomas) contiene el archivo? Indicadas con sequence-region, ya que biological region es una parte pequeña de la biological region  
+## 2. ¿Cuantas regiones de la secuencia (cromosomas) contiene el archivo? Indicadas con sequence-region, ya que biological region es una parte pequeña de la biological region  
+
 cat Sorex_araneus.COMMON_SHREW1.114.gff3 | grep "##sequence-region"| wc -l
 - El comando cuenta cuántas líneas del archivo GFF3 contienen "##sequence-region". El grep busca únicamente las líneas que incluyen ese texto específico, el cual indica las regiones de secuencia dentro del archivo, wc -l, cuenta el número de líneas encontradas. 
 
-# 3. ¿Cuántos genes están listados en el organismo? - Columna 3 tipo freature = gen o ID=gen- Osea que con la de gene no pseudo - de cada uno de los tipos de genes y contarlo
+## 3. ¿Cuántos genes están listados en el organismo? - Columna 3 tipo freature = gen o ID=gen- Osea que con la de gene no pseudo - de cada uno de los tipos de genes y contarlo
+
 cat Sorex_araneus.COMMON_SHREW1.114.gff3 | grep -v "^#" | cut -f3 | grep -wi "gene" | wc -l
 - El comando inicia con cat que muestra el contenido completo del archivo. Grep -v "^#", elimina todas las líneas que comienzan con el símbolo #. Después, el resultado filtrado sigue cut -f3, que extrae únicamente la tercera columna de cada línea, la cual indica el tipo de feature. Grep -wi "gene" busca exclusivamente las líneas donde aparece la palabra gene de forma exacta (-w) e ignorando mayúsculas o minúsculas (-i). Wc -l, que cuenta el número de líneas encontradas. 
 
 
-# 4. ¿Cuál es el top 10 de tipo de features (columna 3) más anotados en el
+## 4. ¿Cuál es el top 10 de tipo de features (columna 3) más anotados en el
 genoma?
+
 cat Sorex_araneus.COMMON_SHREW1.114.gff3| grep -v "^#"| awk '{print $3}'| sort | uniq -c | sort -nr | head -10
 - Este comando inicia con cat que muestra el contenido completo del archivo. Grep -v "^#" elimina todas las líneas que comienzan con el símbolo #. Awk '{print $3}', imprime únicamente la tercera columna de cada línea, donde se indica el feature (por ejemplo, gene, exon, CDS, etc.). Sort organiza alfabéticamente todos los valores de esa columna, y uniq -c agrupa los valores repetidos mostrando al lado la cantidad de veces que aparecen. Sort -nr ordena esos resultados de forma numérica (-n) y en orden descendente (-r), de mayor a menor. Head -10 muestra solo los 10 primeros resultados. 
 
