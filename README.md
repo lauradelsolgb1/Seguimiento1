@@ -1,7 +1,7 @@
 # Seguimiento1
 ## Laura del Sol González 
 
-##1. DESCRIPCION DEL ARCHIVO 
+## 1. DESCRIPCION DEL ARCHIVO 
 
 - Describa los campos que se encontrará en este tipo de archivos. ¿Qué información está allí contenida? Proporcione ejemplos.
 El formato GFF3 (Generic Feature Format Version 3) es un estándar ampliamente usado en bioinformática para describir características genómicas (genes, exones, intrones, regiones codificantes, etc.) en archivos de texto plano tabulados.
@@ -65,7 +65,7 @@ Ese gen tiene un transcrito asociado, y ese transcrito tiene exones.
 
 También hay regiones CDS, UTR, etc., relacionadas con el transcrito.
 
-2. DESCARGA DE ARCHIVOS DE TRABAJO 
+## 2. DESCARGA DE ARCHIVOS DE TRABAJO 
 En el archivo seguimiento.txt
 
 ## 3. ANÁLISIS DEL ARCHIVO 
