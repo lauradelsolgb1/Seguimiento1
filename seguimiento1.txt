@@ -1,0 +1,36 @@
+#Descarga del archivo GFF mediante línea de comandos 
+wget https://ftp.ensembl.org/pub/current_gff3/sorex_araneus/Sorex_araneus.COMMON_SHREW1.114.gff3.gz
+
+#Descomprimir el archivo usando línea de comandos 
+gunzip --version 
+gunzip Sorex_araneus.COMMON_SHREW1.114.gff3.gz
+ls 
+cat Sorex_araneus.COMMON_SHREW1.114.gff3 #mala mia 
+code . 
+
+#Para crear el archivo readme y el archivo de texto plano .txt
+git -- version 
+git clone https://github.com/lauradelsolgb1/Seguimiento1.git
+ls
+cd Seguimiento1/
+ls
+touch seguimiento1.txt
+ls
+nano seguimiento1.txt
+code . 
+
+# ¿Cuantos features (líneas de anotación) contiene el archivo? excluí las que empiezan con #
+cat Sorex_araneus.COMMON_SHREW1.114.gff3 | grep -v "^#" | wc -l
+
+## ¿Cuantas regiones de la secuencia (cromosomas) contiene el archivo? Indicadas con sequence-region, ya que biological region es una parte pequeña de la biological region  
+cat Sorex_araneus.COMMON_SHREW1.114.gff3 | grep "##sequence-region"| wc -l
+
+## ¿Cuántos genes están listados en el organismo? - Columna 3 tipo freature = gen o ID=gen- Osea que con la de gene no pseudo - de cada uno de los tipos de genes
+y contarlo
+cat Sorex_araneus.COMMON_SHREW1.114.gff3 | grep -v "^#" | cut -f3 | grep -wi "gene" | wc -l
+
+## ¿Cuál es el top 10 de tipo de features (columna 3) más anotados en el
+genoma?
+cat Sorex_araneus.COMMON_SHREW1.114.gff3| grep -v "^#"| awk '{print $3}'| sort | uniq -c | sort -nr | head -10
+
+
